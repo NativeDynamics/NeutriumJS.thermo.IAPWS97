@@ -22,7 +22,7 @@ For specific details on range of applicability for the IAPWS please refer to the
 
 #### Bower.io
 
-You can install NeutriumJS Steam using bower
+You can install NeutriumJS Steam using bower.
 
 	bower install neutriumjs-steam
 
