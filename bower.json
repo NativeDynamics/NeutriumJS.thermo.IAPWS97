@@ -1,0 +1,19 @@
+{
+	"name": "NeutriumJS.Steam",
+	"version": "1.0.0",
+	"homepage": "https://github.com/NativeDynamics/NeutriumJS.Steam",
+	"authors": [
+		"Trevor Walker <@cubicleWar>"
+	],
+	"main": "dist/neutriumJS.steam.min.js",
+	"private": false,
+	"description": "A javascript implementation of the IAWPS formulations for the thermodynamic properties of water and steam.",
+	"license": "CC-BY-4.0",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	]
+}
