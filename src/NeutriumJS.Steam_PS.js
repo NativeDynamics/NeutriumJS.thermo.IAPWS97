@@ -2,28 +2,42 @@
 //	NeutriumJS Steam
 //	https://github.com/NativeDynamics/NeutriumJS.Steam
 //
-//	Copyright 2014, Native Dynamics
+//	Copyright 2015, Native Dynamics
 //	https://neutrium.net
 //
 //	Licensed under the Creative Commons Attribution 4.0 International
 //	http://creativecommons.org/licenses/by/4.0/legalcode
 //
+(function (root, factory) {
+    "use strict";
 
-var NeutriumJS = (function (NeutriumJS) {
+	if(typeof define === "function" && define.amd)
+	{
+		define('NeutriumJS/Steam/PS', ['NeutriumJS/Steam', 'NeutriumJS/Steam/PT'], factory);
+	}
+	else if (typeof exports === "object")
+	{
+		module.exports = factory(require('NeutriumJS.Steam'), require('NeutriumJS.Steam.PT'));
+	}
+	else
+	{
+		root.NeutriumJS = root.NeutriumJS || {};
+		root.NeutriumJS.Steam = root.NeutriumJS.Steam || {};
+		root.NeutriumJS.Steam.PS = factory(root.NeutriumJS.Steam, root.NeutriumJS.Steam.PT);
+	}
+}(this, function (NS, PT) {
 	"use strict";
 
 	// Private members
-	var NS = NeutriumJS.Steam = NeutriumJS.Steam || {},
-		R = NS.CONST('R');
+	var R = NS.CONST('R'),
+		PS = {
+			solve : solve,
+			// Exposed for testing
+			r3A_PS_V : r3A_PS_V,
+			r3B_PS_V : r3B_PS_V
+		};
 
-	// Public members
-	NS.PS = PS;
-
-	// Exposed for testing
-	NS.r3A_PS_V = r3A_PS_V;
-	NS.r3B_PS_V = r3B_PS_V;
-
-	return NeutriumJS;
+	return PS;
 
 	//
 	//	Comments : Determines which IAPWS-IF97 region a pressure and entropy combination lie in.
@@ -31,7 +45,7 @@ var NeutriumJS = (function (NeutriumJS) {
 	//	@param P is the pressure of the water in mega Pascals
 	//	@param s is the entropy in kJ . K^-1 . kg^1
 	//
-	function PS(P, s)
+	function solve(P, s)
 	{
 		var region = findRegion_PS(P,s),
 			result = null;
@@ -55,11 +69,11 @@ var NeutriumJS = (function (NeutriumJS) {
 	//
 	function findRegion_PS(P, s)
 	{
-		var r = NS.r5_PT(P, NS.CONST('R5_MAX_T'));
+		var r = PT.r5(P, NS.CONST('R5_MAX_T'));
 
 		if(P >= NS.CONST('MIN_P') && P <= NS.CONST('MAX_P') && s >= NS.CONST('MIN_S') && s <= r.s)
 		{
-			r = NS.r2_PT(P, NS.CONST('R5_MIN_T'));
+			r = PT.r2(P, NS.CONST('R5_MIN_T'));
 
 			if(s > r.s && P <= NS.CONST('R5_MAX_P'))
 			{
@@ -68,14 +82,14 @@ var NeutriumJS = (function (NeutriumJS) {
 
 			if(P > NS.CONST('B23_MIN_P'))
 			{
-				r = NS.r2_PT(P, NS.b23_P_T(P));
+				r = PT.r2(P, PT.b23_P_T(P));
 
 				if(s > r.s)
 				{
 					return 2;
 				}
 
-				r = NS.r3_PT(P, NS.CONST('R3_MIN_T'));
+				r = PT.r3(P, NS.CONST('R3_MIN_T'));
 
 				if(s > r.s)
 				{
@@ -83,14 +97,14 @@ var NeutriumJS = (function (NeutriumJS) {
 				}
 			}
 
-			r = NS.r1_PT(P, NS.r4_P_Tsat(P));
+			r = PT.r1(P, PT.r4_P_Tsat(P));
 
 			if(P <= NS.CONST('B23_MIN_P') && s > r.s)
 			{
 				return 2;
 			}
 
-			r = NS.r1_PT(P, NS.CONST('MIN_T'));
+			r = PT.r1(P, NS.CONST('MIN_T'));
 
 			if(s >= r.s)
 			{
@@ -107,7 +121,8 @@ var NeutriumJS = (function (NeutriumJS) {
 	function r1_PS(P, s)
 	{
 		var T = r1_PS_T(P,s);
-		return NS.r1_PT(P,T);
+
+		return PT.r1(P,T);
 	}
 
 	function r1_PS_T(P, s)
@@ -137,7 +152,8 @@ var NeutriumJS = (function (NeutriumJS) {
 	function r2_PS(P, s)
 	{
 		var T = r2_PS_T(P,s);
-		return NS.r2_PT(P,T);
+
+		return PT.r2(P,T);
 	}
 
 	function r2_PS_T(P, s)
@@ -247,7 +263,7 @@ var NeutriumJS = (function (NeutriumJS) {
 			rho = r3B_PS_V(P,s);
 		}
 
-		return NS.r3_PT(P, T, rho);
+		return PT.r3(P, T, rho);
 	}
 
 
@@ -340,9 +356,9 @@ var NeutriumJS = (function (NeutriumJS) {
 	//
 	function r4_PS(P, s)
 	{
-		var T = NS.r4_P_Tsat(P);
+		var T = PT.r4_P_Tsat(P);
 
-		return NS.PT(P, T);
+		return PT.solve(P, T);
 	}
 
 	function r4_S_Psat(s)
@@ -364,4 +380,4 @@ var NeutriumJS = (function (NeutriumJS) {
 
 		return 22*p;
 	}
-}(NeutriumJS || {}));
+}));

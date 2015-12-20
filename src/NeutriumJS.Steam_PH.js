@@ -2,34 +2,49 @@
 //	NeutriumJS Steam
 //	https://github.com/NativeDynamics/NeutriumJS.Steam
 //
-//	Copyright 2014, Native Dynamics
+//	Copyright 2015, Native Dynamics
 //	https://neutrium.net
 //
 //	Licensed under the Creative Commons Attribution 4.0 International
 //	http://creativecommons.org/licenses/by/4.0/legalcode
 //
 
-var NeutriumJS = (function (NeutriumJS) {
+(function (root, factory) {
+    "use strict";
+
+	if(typeof define === "function" && define.amd)
+	{
+		define('NeutriumJS/Steam/PH', ['NeutriumJS/Steam', 'NeutriumJS/Steam/PT'], factory);
+	}
+	else if (typeof exports === "object")
+	{
+		module.exports = factory(require('NeutriumJS.Steam'), require('NeutriumJS.Steam.PT'));
+	}
+	else
+	{
+		root.NeutriumJS = root.NeutriumJS || {};
+		root.NeutriumJS.Steam = root.NeutriumJS.Steam || {};
+		root.NeutriumJS.Steam.PH = factory(root.NeutriumJS.Steam, root.NeutriumJS.Steam.PT);
+	}
+}(this, function (NS, PT) {
 	"use strict";
 
 	// Private members
-	var NS = NeutriumJS.Steam = NeutriumJS.Steam || {},
-		R = NS.CONST('R');
+	var R = NS.CONST('R'),
+		PH = {
+			solve : solve,
+			r2 : r2_PH,
+			r1_PH_T : r1_PH_T,
+			// Exposing equations for testing
+			b2bc_H_P : b2bc_H_P,
+			b2bc_P_H : b2bc_P_H,
+			b3ab_P_H : b3ab_P_H,
+			r3A_PH_V : r3A_PH_V,
+			r3B_PH_V : r3B_PH_V,
+			r4_H_Psat : r4_H_Psat,
+		};
 
-	// Public members
-	NS.PH = PH;
-	NS.r2_PH = r2_PH;
-	NS.r1_PH_T = r1_PH_T;
-
-	// Exposing equations for testing
-	NS.b2bc_H_P = b2bc_H_P;
-	NS.b2bc_P_H = b2bc_P_H;
-	NS.b3ab_P_H = b3ab_P_H;
-	NS.r3A_PH_V = r3A_PH_V;
-	NS.r3B_PH_V = r3B_PH_V;
-	NS.r4_H_Psat = r4_H_Psat;
-
-	return NeutriumJS;
+	return PH;
 
 	//
 	//	Comments : Calculate the steam properties using IAWPS for a given pressure and temperature
@@ -37,7 +52,7 @@ var NeutriumJS = (function (NeutriumJS) {
 	//	@param P is the pressure of the water in MPa
 	//	@param h is the enthalpy kg/KJ.K
 	//
-	function PH(P, h)
+	function solve(P, h)
 	{
 		var region = findRegion_PH(P,h),
 			result = null;
@@ -61,16 +76,16 @@ var NeutriumJS = (function (NeutriumJS) {
 	//
 	function findRegion_PH(P, h)
 	{
-		var r = NS.r1_PT(P, NS.CONST('MIN_T'));
+		var r = PT.r1(P, NS.CONST('MIN_T'));
 
 		// Whats the region max/min for h
 		if(P >= NS.CONST('MIN_P') && P <= NS.CONST('MAX_P') && h >= r.h )
 		{
 			if( P < NS.CONST('B23_MIN_P') )
 			{
-				var Ts = NS.r4_P_Tsat(P);
+				var Ts = PT.r4_P_Tsat(P);
 
-				r = NS.r1_PT(P, Ts);
+				r = PT.r1(P, Ts);
 
 				if( h <= r.h )
 				{
@@ -83,7 +98,7 @@ var NeutriumJS = (function (NeutriumJS) {
 					return 2;
 				}
 
-				r = NS.r2_PT(P, NS.CONST('R2_MAX_T'));
+				r = PT.r2(P, NS.CONST('R2_MAX_T'));
 
 				if(h <= r.h)
 				{
@@ -93,7 +108,7 @@ var NeutriumJS = (function (NeutriumJS) {
 				// Region 5
 				if( P < NS.CONST('R5_MAX_P'))
 				{
-					r = NS.r5_PT(P, NS.CONST('MAX_T'));
+					r = PT.r5(P, NS.CONST('MAX_T'));
 
 					if(h < r.h)
 					{
@@ -102,7 +117,7 @@ var NeutriumJS = (function (NeutriumJS) {
 				}
 			} else { // P >= B23_MIN_P
 				// Region 1 check
-				r = NS.r1_PT(P, NS.CONST('R3_MIN_T'));
+				r = PT.r1(P, NS.CONST('R3_MIN_T'));
 
 				if (h <= r.h)
 				{
@@ -110,7 +125,7 @@ var NeutriumJS = (function (NeutriumJS) {
 				}
 
 				// Region 3
-				r = NS.r2_PT(P, NS.b23_P_T(P));
+				r = PT.r2(P, PT.b23_P_T(P));
 
 				if( h < r.h)
 				{
@@ -118,7 +133,7 @@ var NeutriumJS = (function (NeutriumJS) {
 				}
 
 				// Region 2
-				r = NS.r2_PT(P, NS.CONST('R2_MAX_T'));
+				r = PT.r2(P, NS.CONST('R2_MAX_T'));
 
 				if(h < r.h)
 				{
@@ -135,7 +150,7 @@ var NeutriumJS = (function (NeutriumJS) {
 	//
 	function r1_PH(P, h)
 	{
-		return NS.r1_PT(P, r1_PH_T(P,h));
+		return PT.r1(P, r1_PH_T(P,h));
 	}
 
 	function r1_PH_T(P, h)
@@ -166,7 +181,7 @@ var NeutriumJS = (function (NeutriumJS) {
 	{
 		var T = r2_PH_T(P,h);
 
-		return NS.r2_PT(P, T);
+		return PT.r2(P, T);
 	}
 
 	function r2_PH_T(P, h)
@@ -292,7 +307,7 @@ var NeutriumJS = (function (NeutriumJS) {
 			rho = r3B_PH_V(P,h);
 		}
 
-		return NS.r3_PT(P, T, rho);
+		return PT.r3(P, T, rho);
 	}
 
 	//
@@ -414,4 +429,4 @@ var NeutriumJS = (function (NeutriumJS) {
 		return 22*p;
 	}
 
-}(NeutriumJS || {}));
+}));

@@ -1,11 +1,12 @@
 {
-  "name": "NeutriumJS.Steam",
-  "version": "1.0.0",
+  "name": "neutriumjs.steam",
+  "version": "1.0.5",
   "description": "A javascript implementation of the IAWPS formulations for the thermodynamic properties of water and steam.",
   "license": "CC-BY-4.0",
   "author:": {
     "name": "Trevor Walker",
-    "company": "Native Dynamics"
+    "company": "Native Dynamics",
+    "url" : "https://neutrium.net"
   },
   "private": false,
   "engines": {

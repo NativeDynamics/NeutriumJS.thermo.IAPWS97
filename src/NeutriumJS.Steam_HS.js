@@ -2,31 +2,48 @@
 //	NeutriumJS Steam
 //	https://github.com/NativeDynamics/NeutriumJS.Steam
 //
-//	Copyright 2014, Native Dynamics
+//	Copyright 2015, Native Dynamics
 //	https://neutrium.net
 //
 //	Licensed under the Creative Commons Attribution 4.0 International
 //	http://creativecommons.org/licenses/by/4.0/legalcode
 //
 
-var NeutriumJS = (function (NeutriumJS) {
+(function (root, factory) {
+    "use strict";
+
+	if(typeof define === "function" && define.amd)
+	{
+		define('NeutriumJS/Steam/HS', ['NeutriumJS/Steam', 'NeutriumJS/Steam/PT', 'NeutriumJS/Steam/PH'], factory);
+	}
+	else if (typeof exports === "object")
+	{
+		module.exports = factory(require('NeutriumJS.Steam'), require('NeutriumJS.Steam.PT'), require('NeutriumJS.Steam.PH'));
+	}
+	else
+	{
+		root.NeutriumJS = root.NeutriumJS || {};
+		root.NeutriumJS.Steam = root.NeutriumJS.Steam || {};
+		root.NeutriumJS.Steam.HS = factory(root.NeutriumJS.Steam, root.NeutriumJS.Steam.PT, root.NeutriumJS.Steam.PH);
+	}
+}(this, function (NS, PT, PH) {
 	"use strict";
 
-	var NS = NeutriumJS.Steam = NeutriumJS.Steam || {};
+	var HS = {
+			solve : solve,
 
-	NS.HS = HS;
+			// Exposed for testing purpose
+			b2ab_S_H : b2ab_S_H,
+			b23_HS_T : b23_HS_T,
+			b14_S_H : b14_S_H,
+			b3A_S_H : b3A_S_H,
+			b2ab_S_Hsat : b2ab_S_Hsat,
+			b2c3b_S_H : b2c3b_S_H,
+			b13_S_H : b13_S_H,
+			r4_HS_Tsat : r4_HS_Tsat
+		};
 
-	// Exposed for testing purpose
-	NS.b2ab_S_H = b2ab_S_H;
-	NS.b23_HS_T = b23_HS_T;
-	NS.b14_S_H = b14_S_H;
-	NS.b3A_S_H = b3A_S_H;
-	NS.b2ab_S_Hsat = b2ab_S_Hsat;
-	NS.b2c3b_S_H = b2c3b_S_H;
-	NS.b13_S_H = b13_S_H;
-	NS.r4_HS_Tsat = r4_HS_Tsat;
-
-	return NeutriumJS;
+	return HS;
 
 	//
 	//	Comments : Determines which IAPWS-IF97 region a entalphy and entropy combination lie in.
@@ -34,7 +51,7 @@ var NeutriumJS = (function (NeutriumJS) {
 	//	@param h is the enthalphy in kJ/kg
 	//	@param s is the entropy in kJ . K^-1 . kg^1
 	//
-	function HS(h, s)
+	function solve(h, s)
 	{
 		var region = findRegion_HS(h, s),
 			result = null;
@@ -78,7 +95,7 @@ var NeutriumJS = (function (NeutriumJS) {
 			// Do check using the PB23
 			var T = b23_HS_T(h, s),
 				P = r2C_HS_P(h, s),
-				Pcheck = NS.b23_T_P(T);
+				Pcheck = PT.b23_T_P(T);
 
 			if(Pcheck > P)
 			{
@@ -255,9 +272,9 @@ var NeutriumJS = (function (NeutriumJS) {
 	function r1_HS(h, s)
 	{
 		var P = r1_HS_P(h,s),
-			T = NS.r1_PH_T(P,h);
+			T = PH.r1_PH_T(P,h);
 
-		return NS.r1_PT(P,T);
+		return PT.r1(P,T);
 	}
 
 	function r1_HS_P(h, s)
@@ -289,7 +306,7 @@ var NeutriumJS = (function (NeutriumJS) {
 	{
 		var P = r2_HS_P(h,s);
 
-		return NS.r2_PH(P,h);
+		return PH.r2(P,h);
 	}
 
 	function r2_HS_P(h, s)
@@ -385,7 +402,7 @@ var NeutriumJS = (function (NeutriumJS) {
 	{
 		var P = r3_HS_P(h, s);
 
-		return NS.r2_PH(P, h);
+		return PH.r2(P, h);
 	}
 
 	function r3_HS_P(h, s)
@@ -449,9 +466,9 @@ var NeutriumJS = (function (NeutriumJS) {
 	function r4_HS(h, s)
 	{
 		var T = r4_HS_Tsat(h, s),
-			P = NS.r4_T_Psat(T);
+			P = PT.r4_T_Psat(T);
 
-		return NS.PT(P, T);
+		return PT.solve(P, T);
 	}
 
 
@@ -477,7 +494,7 @@ var NeutriumJS = (function (NeutriumJS) {
 		return 550*T;
 	}
 
-}(NeutriumJS || {}));
+}));
 
 
 

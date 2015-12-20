@@ -26,6 +26,12 @@ You can install NeutriumJS Steam using bower.
 
 	bower install neutriumjs-steam
 
+#### npm
+
+You can add NeutriumJS.Steam to your project using npm by:
+
+	npm install neutriumjs.steam --save
+
 ### Standalone
 
 If your project is not using bower you can use the compiled and minified source which is found at:
@@ -40,14 +46,36 @@ The NeutriumJS.Steam library should be included into your page using  the follow
 
 Note the use of charset="utf-8" is important, particularly if using un-minified code as the codebase makes use of unicode character variable names. 
 
+### Selective Inclusion
+
+NeutriumJS.Steam is divided into base, pressure-temperature (PT), pressure-entropy (PS), pressure-enthalpy (PH) and enthalpy-entropy (HS) modules. If you only require a subset of this functionality you can exclude modules to reduce the weight of the library. There are a number of builds in the ./dist folder that provide selected subsets of the functionality, however you can also create your own subset as follows:
+
+
+At a bare minimum you must include the following files which will provide the functionality to calculate steam properties using pressure and temperature (these are the dependencies of all sub modules):
+
+	src/NeutriumJS.Steam.js
+	src/NeutriumJS.Steam_PT.js
+	
+To enable calculation of steam properties using pressure and entropy or pressure and enthalpy in addition to the base requirements above you need to include either/both of the following files as appropriate:
+
+	src/NeutriumJS.Steam_PS.js
+	src/NeutriumJS.Steam_PH.js
+	
+Lastly if you wanted to enable calculations based on enthalpy-entropy (HS) you need to include the following files in addition to the base requirements (note the dependency on the PH module):
+ 	
+ 	src/NeutriumJS.Steam_PH.js
+	src/NeutriumJS.Steam_HS.js
+
+If you need further clarification of module dependencies just refer to the UMD definition at the start of each source file.
+
 ## Calculating Steam Properties
 
 IAPWS provides four methods to calculate the properties of steam and water using combinations of pressure (in MPa), temperature (K), enthalpy (kJ/kg.K) and entropy (kJ/K.kg). In NeutriumJS Steam these four functions  are listed as follows:
 
-	NeutriumJS.Steam.PT(P, T);	// Calculate properties from pressure and temperature
-	NeutriumJS.Steam.PH(P, H);	// Calculate properties from pressure and enthalpy
-	NeutriumJS.Steam.PS(P, S);	// Calculate properties from pressure and entropy
-	NeutriumJS.Steam.HS(H, S);	// Calculate properties from enthalpy and entropy
+	NeutriumJS.Steam.PT.solve(P, T);	// Calculate properties from pressure and temperature
+	NeutriumJS.Steam.PH.solve(P, H);	// Calculate properties from pressure and enthalpy
+	NeutriumJS.Steam.PS.solve(P, S);	// Calculate properties from pressure and entropy
+	NeutriumJS.Steam.HS.solve(H, S);	// Calculate properties from enthalpy and entropy
 
 
 ### Return Values
@@ -87,6 +115,7 @@ NeutriumJS is free software, but you can support the developers by [donating her
 | Version | Notes |
 |:-------:|:------|
 | 1.0.0	  | Initial Release |
+| 1.0.5   | Add UMD definition |
 
 ## License 
 
