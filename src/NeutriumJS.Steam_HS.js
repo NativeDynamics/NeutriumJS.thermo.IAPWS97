@@ -16,7 +16,7 @@
 	{
 		define('NeutriumJS/Steam/HS', ['NeutriumJS/Steam', 'NeutriumJS/Steam/PT', 'NeutriumJS/Steam/PH'], factory);
 	}
-	else if (typeof exports === "object")
+	else if (typeof exports === "object" && module.exports)
 	{
 		module.exports = factory(require('NeutriumJS.Steam'), require('NeutriumJS.Steam.PT'), require('NeutriumJS.Steam.PH'));
 	}

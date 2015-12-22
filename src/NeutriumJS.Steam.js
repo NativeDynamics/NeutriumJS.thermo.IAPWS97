@@ -14,22 +14,26 @@
 
 	if(typeof define === "function" && define.amd)
 	{
-		define('NeutriumJS/Steam', [], factory);
+		require(['NeutriumJS/Qty'], function(Qty) {
+			define('NeutriumJS/Steam', ['NeutriumJS/Qty'], factory);
+		},
+		function(err) {
+			define('NeutriumJS/Steam', [], factory);
+		});
 	}
-	else if (typeof exports === "object")
+	else if (typeof exports === "object" && module.exports)
 	{
-		module.exports = factory();
+		module.exports = factory(require('NeutriumJS/Qty'));
 	}
 	else
 	{
 		root.NeutriumJS = root.NeutriumJS || {};
-		root.NeutriumJS.Steam = factory();
+		root.NeutriumJS.Steam = factory(root.NeutriumJS.Qty);
 	}
-}(this, function() {
+}(this, function(Qty) {
 	"use strict";
 
 	var constants = {
-
 			// Critical and Gas Constants
 			'R' : 0.461526,					// kJ/kg.K
 			//'Tc' : 647.096,					// K
@@ -66,15 +70,103 @@
 			'B23_H_MAX' : 2812.942061,
 		},
 		NS = {
+			SteamResult : SteamResult,
+			Exception : Exception,
 			CONST : CONST,
 			viscosity : aux_Viscosity,
 			thermal_conductivity : aux_Thermal_Conductivity,
 			surface_tension : aux_Surface_Tension,
 			dielectric_constant : aux_Dielectric_Constant,
-			ionization_constant : aux_Ionization_Constant
+			ionization_constant : aux_Ionization_Constant,
+
 		};
 
 	return NS;
+
+	// The Steam result object
+
+	function SteamResult(initValue)
+	{
+		var self = this;
+
+		// Pressure, P, Mpa
+		self.P = initValue.P;
+		// Temperature, T, K
+		self.T = initValue.T;
+		// Specific volume, v, m^3/kg
+		self.v = initValue.v;
+		// Density, rho, kg/m^3
+		self.rho = 1/initValue.v;
+		// Specific internal energy, u, kJ/kg
+		self.u = initValue.u;
+		// Specific entropy, s, kJ/kg
+		self.s = initValue.s;
+		// Specific enthalpy, h, kJ/kg.K
+		self.h = initValue.h;
+		// Specific isobaric heat capacity, Cp kJ/kg.K
+		self.cp = initValue.cp;
+		// Specific isochoric heat capacity, Cv
+		self.cv = initValue.cv;
+		// Speed of Sound, w, m/s
+		self.w = initValue.w;
+		// Viscosity cP,
+		self.mu = aux_Viscosity(initValue.T, self.rho)/1000;
+		// Thermal Conductivity W/m.K
+		self.k = aux_Thermal_Conductivity(initValue.T, self.rho)/1000;
+		// Surface Tension mN/m
+		self.sig = aux_Surface_Tension(initValue.T);
+		// Dielectric constant
+		self.epsilon = aux_Dielectric_Constant(initValue.T, self.rho);
+		// Ionisation constant
+		self.ic = aux_Ionization_Constant(initValue.T, self.rho);
+	}
+
+	SteamResult.prototype = {
+
+		// Return the steam results as Qty's if NeutriumJS.convert is loaded
+		asQty : function() {
+			var self = this;
+			if(typeof Qty !== 'undefined')
+			{
+				self.P = new Qty(self.P + 'MPa');
+				// Temperature, T, K
+				self.T = new Qty(self.T + 'K');
+				// Specific volume, v, m^3/kg
+				self.v = new Qty(self.v + 'm^3/kg');
+				// Density, rho, kg/m^3
+				self.rho = new Qty(self.rho + 'kg/m^3');
+				// Specific internal energy, u, kJ/kg
+				self.u = new Qty(self.u + 'kJ/kg');
+				// Specific entropy, s, kJ/kg
+				self.s = new Qty(self.s + 'kJ/kg');
+				// Specific enthalpy, h, kJ/kg.K
+				self.h = new Qty(self.h + 'kJ/kg.K');
+				// Specific isobaric heat capacity, Cp kJ/kg.K
+				self.cp = new Qty(self.cp + 'kJ/kg.K');
+				// Specific isochoric heat capacity, Cv
+				self.cv = new Qty(self.cv + 'kJ/kg.K');
+				// Speed of Sound, w, m/s
+				self.w = new Qty(self.w + 'm/s');
+				// Viscosity cP,
+				self.mu = new Qty(self.mu + 'cP');
+				// Thermal Conductivity W/m.K
+				self.k = new Qty(self.k + 'W/m.K');
+				// Surface Tension mN/m
+				self.sig = new Qty(self.sig + 'mN/m');
+				// Dielectric constant
+				self.epsilon = new Qty(self.epsilon + 'mN/m');
+				// Ionisation constant
+				self.ic = new Qty(self.ic);
+
+				return self;
+			}
+			else
+			{
+				throw new Exception('NeutriumJS.convert module not found, please load module if useing asQty()');
+			}
+		}
+	};
+
 
 	function CONST(name)
 	{
@@ -322,5 +414,11 @@
 			pK_w = -12*(Math.log10(1+Q) - Q/(Q+1)*ρ*(0.642044 -56.8534/T -0.375754*ρ)) + pK_wg + 2*Math.log10(0.018015268);
 
 		return pK_w;
+	}
+
+	function Exception(message)
+	{
+		this.name = 'NeutriumJS.steam Exception';
+		this.message = message;
 	}
 }));

@@ -1,6 +1,6 @@
 {
   "name": "neutriumjs.steam",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "A javascript implementation of the IAWPS formulations for the thermodynamic properties of water and steam.",
   "license": "CC-BY-4.0",
   "author:": {

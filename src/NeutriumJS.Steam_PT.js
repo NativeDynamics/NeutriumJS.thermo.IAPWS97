@@ -16,7 +16,7 @@
 	{
 		define('NeutriumJS/Steam/PT', ['NeutriumJS/Steam'], factory);
 	}
-	else if (typeof exports === "object")
+	else if (typeof exports === "object" && module.exports)
 	{
 		module.exports = factory(require('NeutriumJS.Steam'));
 	}
@@ -121,39 +121,7 @@
 
 	function generateResult(r)
 	{
-		var result = {};
-
-		// Pressure, P, Mpa
-		result.P = r.P;
-		// Temperature, T, K
-		result.T = r.T;
-		// Specific volume, v, m^3/kg
-		result.v = r.v;
-		// Density, rho, kg/m^3
-		result.rho = 1/r.v;
-		// Specific internal energy, u, kJ/kg
-		result.u = r.u;
-		// Specific entropy, s, kJ/kg
-		result.s = r.s;
-		// Specific enthalpy, h, kJ/kg.K
-		result.h = r.h;
-		// Specific isobaric heat capacity, Cp kJ/kg.K
-		result.cp = r.cp;
-		// Specific isochoric heat capacity, Cv
-		result.cv = r.cv;
-		// Speed of Sound, w, m/s
-		result.w = r.w;
-		// Viscosity cP,
-		result.mu = NS.viscosity(r.T, result.rho)/1000;
-		// Thermal Conductivity W/m.K
-		result.k = NS.thermal_conductivity(r.T, result.rho)/1000;
-		// Surface Tension mN/m
-		result.sig = NS.surface_tension(r.T);
-		// Dielectric constant
-		result.epsilon = NS.dielectric_constant(r.T, result.rho);
-		// Ionisation constant
-		result.ic = NS.ionization_constant(r.T, result.rho);
-		return result;
+		return new NS.SteamResult(r);
 	}
 
 	// Auxillary equations for Regions 2 and 3

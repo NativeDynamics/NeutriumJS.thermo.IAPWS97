@@ -42,11 +42,11 @@ If your project is not using bower you can use the compiled and minified source 
 
 The NeutriumJS.Steam library should be included into your page using  the following:
 
-	<script charset="utf-8" src="neutriumJS.steam.min.js"></script>
+	<script charset="utf-8" src="path-to-lib/neutriumJS.steam.min.js"></script>
 
 Note the use of charset="utf-8" is important, particularly if using un-minified code as the codebase makes use of unicode character variable names. 
 
-### Selective Inclusion
+### Limiting Library Weight
 
 NeutriumJS.Steam is divided into base, pressure-temperature (PT), pressure-entropy (PS), pressure-enthalpy (PH) and enthalpy-entropy (HS) modules. If you only require a subset of this functionality you can exclude modules to reduce the weight of the library. There are a number of builds in the ./dist folder that provide selected subsets of the functionality, however you can also create your own subset as follows:
 
@@ -56,7 +56,7 @@ At a bare minimum you must include the following files which will provide the fu
 	src/NeutriumJS.Steam.js
 	src/NeutriumJS.Steam_PT.js
 	
-To enable calculation of steam properties using pressure and entropy or pressure and enthalpy in addition to the base requirements above you need to include either/both of the following files as appropriate:
+To enable calculation of steam properties using pressure-entropy or pressure-enthalpy in addition to the base requirements above you need to include either/both of the following files as appropriate:
 
 	src/NeutriumJS.Steam_PS.js
 	src/NeutriumJS.Steam_PH.js
@@ -102,9 +102,26 @@ If your specified values lie within the applicable range for the IAWPS formulati
 
 If you try and calculate the properties outside the range of applicability as specified by IAWPS NeutriumJS Steam will return null.
 
+## Optional Neutrium Convert Support
+
+NeutriumJS.steam has optional support for the [NeutriumJS.convert](https://github.com/NativeDynamics/NeutriumJS.convert) module. Just include it before the steam modules:
+
+	<script charset="utf-8" src="path-to-lib/neutriumJS.convert.min.js"></script> 
+	<script charset="utf-8" src="path-to-lib/neutriumJS.steam.min.js"></script>
+
+Then you can get NeutriumJS.steam to return results as Qty objects:
+
+	var result = NeutriumJS.steam.PT.solve(3, 300).asQty();
+	
+This will allow you to easily convert each property as required:
+
+	var psi = result.P.to('psi');
+
+See the  the NeutriumJS.convert [readme](https://github.com/NativeDynamics/NeutriumJS.convert/blob/master/README.md) for more info.
+
 ## Testing
 
-NeutriumJS Steam is currently tested using all applicable tests provided in the IAWPS papers listed above.
+NeutriumJS Steam is currently tested using all applicable tests provided in the IAWPS papers listed above. To run the tests, after cloning the repo install all npm and bower dependencies then run the default gulp task.
 
 ## Donations
 
@@ -116,6 +133,7 @@ NeutriumJS is free software, but you can support the developers by [donating her
 |:-------:|:------|
 | 1.0.0	  | Initial Release |
 | 1.0.5   | Add UMD definition |
+| 1.1.0   | Optional NeutriumJS.convert support |
 
 ## License 
 
