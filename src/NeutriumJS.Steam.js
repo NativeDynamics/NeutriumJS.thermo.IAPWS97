@@ -90,9 +90,9 @@
 		var self = this;
 
 		// Pressure, P, Mpa
-		self.P = initValue.P;
+		self.p = initValue.p;
 		// Temperature, T, K
-		self.T = initValue.T;
+		self.t = initValue.t;
 		// Specific volume, v, m^3/kg
 		self.v = initValue.v;
 		// Density, rho, kg/m^3
@@ -110,15 +110,15 @@
 		// Speed of Sound, w, m/s
 		self.w = initValue.w;
 		// Viscosity cP,
-		self.mu = aux_Viscosity(initValue.T, self.rho)/1000;
+		self.mu = aux_Viscosity(initValue.t, self.rho)/1000;
 		// Thermal Conductivity W/m.K
-		self.k = aux_Thermal_Conductivity(initValue.T, self.rho)/1000;
+		self.k = aux_Thermal_Conductivity(initValue.t, self.rho)/1000;
 		// Surface Tension mN/m
-		self.sig = aux_Surface_Tension(initValue.T);
+		self.sig = aux_Surface_Tension(initValue.t);
 		// Dielectric constant
-		self.epsilon = aux_Dielectric_Constant(initValue.T, self.rho);
+		self.epsilon = aux_Dielectric_Constant(initValue.t, self.rho);
 		// Ionisation constant
-		self.ic = aux_Ionization_Constant(initValue.T, self.rho);
+		self.ic = aux_Ionization_Constant(initValue.t, self.rho);
 	}
 
 	SteamResult.prototype = {
@@ -128,9 +128,9 @@
 			var self = this;
 			if(typeof Qty !== 'undefined')
 			{
-				self.P = new Qty(self.P + 'MPa');
+				self.p = new Qty(self.p + 'MPa');
 				// Temperature, T, K
-				self.T = new Qty(self.T + 'K');
+				self.t = new Qty(self.t + 'K');
 				// Specific volume, v, m^3/kg
 				self.v = new Qty(self.v + 'm^3/kg');
 				// Density, rho, kg/m^3

@@ -89,7 +89,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 			});
 
 			it('Pressure (P) is correct', function() {
-				expect(+result.P.toFixed(13)).toEqual(0.0009800980612);
+				expect(+result.p.toFixed(13)).toEqual(0.0009800980612);
 			});
 		});
 
@@ -101,7 +101,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 			});
 
 			it('Pressure (P) is correct', function() {
-				expect(+result.P.toFixed(8)).toEqual(91.92954727);
+				expect(+result.p.toFixed(8)).toEqual(91.92954727);
 			});
 		});
 
@@ -113,7 +113,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 			});
 
 			it('Pressure (P) is correct', function() {
-				expect(+result.P.toFixed(8)).toEqual(58.68294423);
+				expect(+result.p.toFixed(8)).toEqual(58.68294423);
 			});
 		});
 	});
@@ -167,7 +167,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(9)).toEqual(1.371012767);
+					expect(+result.p.toFixed(9)).toEqual(1.371012767);
 				});
 			});
 
@@ -179,7 +179,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(12)).toEqual(0.001879743844);
+					expect(+result.p.toFixed(12)).toEqual(0.001879743844);
 				});
 			});
 
@@ -191,7 +191,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(10)).toEqual(0.1024788997);
+					expect(+result.p.toFixed(10)).toEqual(0.1024788997);
 				});
 			});
 		});
@@ -206,7 +206,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(9)).toEqual(4.793911442);
+					expect(+result.p.toFixed(9)).toEqual(4.793911442);
 				});
 			});
 
@@ -218,7 +218,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(8)).toEqual(83.95519209);
+					expect(+result.p.toFixed(8)).toEqual(83.95519209);
 				});
 			});
 
@@ -230,7 +230,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(9)).toEqual(7.527161441);
+					expect(+result.p.toFixed(9)).toEqual(7.527161441);
 				});
 			});
 		});
@@ -245,7 +245,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(7)).toEqual(94.3920206);
+					expect(+result.p.toFixed(7)).toEqual(94.3920206);
 				});
 			});
 
@@ -257,7 +257,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(9)).toEqual(8.414574124);
+					expect(+result.p.toFixed(9)).toEqual(8.414574124);
 				});
 			});
 
@@ -269,7 +269,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(8)).toEqual(83.76903879);
+					expect(+result.p.toFixed(8)).toEqual(83.76903879);
 				});
 			});
 		});
@@ -286,7 +286,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(8)).toEqual(25.55703246);
+					expect(+result.p.toFixed(8)).toEqual(25.55703246);
 				});
 			});
 
@@ -298,7 +298,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(8)).toEqual(45.40873468);
+					expect(+result.p.toFixed(8)).toEqual(45.40873468);
 				});
 			});
 
@@ -310,7 +310,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(7)).toEqual(60.7812334);
+					expect(+result.p.toFixed(7)).toEqual(60.7812334);
 				});
 			});
 		});
@@ -325,7 +325,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(8)).toEqual(34.34999263);
+					expect(+result.p.toFixed(8)).toEqual(34.34999263);
 				});
 			});
 
@@ -337,7 +337,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(8)).toEqual(63.63924887);
+					expect(+result.p.toFixed(8)).toEqual(63.63924887);
 				});
 			});
 
@@ -349,7 +349,7 @@ describe("NeutriumJS.Steam.HS Enthalphy-Entropy equations", function() {
 				});
 
 				it('Pressure (P) is correct', function() {
-					expect(+result.P.toFixed(8)).toEqual(88.39043281);
+					expect(+result.p.toFixed(8)).toEqual(88.39043281);
 				});
 			});
 		});

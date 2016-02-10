@@ -83,8 +83,8 @@ IAPWS provides four methods to calculate the properties of steam and water using
 If your specified values lie within the applicable range for the IAWPS formulations you will be return an object containing the following properties:
 
 	{
-		P, 		// Pressure, P, Mpa
-		T, 		// Temperature, T, K
+		p, 		// Pressure, p, MPa
+		t, 		// Temperature, t, K
 		v, 		// Specific volume, v, m^3/kg
 		rho,	// Density, rho, kg/m^3
 		u,		// Specific internal energy, u, kJ/kg
@@ -134,6 +134,7 @@ NeutriumJS is free software, but you can support the developers by [donating her
 | 1.0.0	  | Initial Release |
 | 1.0.5   | Add UMD definition |
 | 1.1.0   | Optional NeutriumJS.convert support |
+| 1.1.1	  | Change P and T keys to lower case |
 
 ## License 
 

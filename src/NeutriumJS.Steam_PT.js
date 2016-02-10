@@ -172,8 +172,8 @@
 		}
 
 		return generateResult({
-			P: P,
-			T: T,
+			p: P,
+			t: T,
 			v: R*T*pi*g_p/(1000*P),
 			u: R*T*(tau*g_t-pi*g_p),
 			s: R*(tau*g_t-g),
@@ -233,8 +233,8 @@
 		}
 
 		return generateResult({
-			P: P,
-			T: T,
+			p: P,
+			t: T,
 			v: (R*T/(1000*P))*pi*(gi_p + gr_p),
 			u: R*T*(tau*(gi_t+gr_t)-pi*(gi_p+gr_p)),
 			s: R*(tau*(gi_t+gr_t)-(gi+gr)),
@@ -288,8 +288,8 @@
 		}
 
 		return generateResult({
-			P: rho*R*T*g*s_g/1000,
-			T: T,
+			p: rho*R*T*g*s_g/1000,
+			t: T,
 			v: v,
 			u: R*T*tau*s_t,
 			s: R*(tau*s_t-s),
@@ -1340,8 +1340,8 @@
 
 		// The pressure and temperature MPa, K
 		return generateResult({
-			P: P,
-			T: T,
+			p: P,
+			t: T,
 			v: R*T*pi*(gi_p+gr_p)/(1000*P),
 			u: R*T*(tau*(gi_t+gr_t)-pi*(gi_p+gr_p)),
 			s: R*(tau*(gi_t+gr_t)-(gi+gr)),

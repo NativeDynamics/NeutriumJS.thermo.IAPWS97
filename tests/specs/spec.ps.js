@@ -7,10 +7,11 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 
 			beforeAll(function() {
 				result = NeutriumJS.Steam.PS.solve(3, 0.5);
+				console.log(result);
 			});
 
 			it('Temperature (T) is correct', function() {
-				expect(+result.T.toFixed(6)).toEqual(307.842258);
+				expect(+result.t.toFixed(6)).toEqual(307.842258);
 			});
 		});
 
@@ -22,7 +23,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 			});
 
 			it('Temperature (T) is correct', function() {
-				expect(+result.T.toFixed(6)).toEqual(309.979785);
+				expect(+result.t.toFixed(6)).toEqual(309.979785);
 			});
 		});
 
@@ -34,7 +35,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 			});
 
 			it('Temperature (T) is correct', function() {
-				expect(+result.T.toFixed(6)).toEqual(565.899909);
+				expect(+result.t.toFixed(6)).toEqual(565.899909);
 			});
 		});
 	});
@@ -50,7 +51,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(6)).toEqual(399.517097);
+					expect(+result.t.toFixed(6)).toEqual(399.517097);
 				});
 			});
 
@@ -62,7 +63,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(6)).toEqual(514.127082);	// IAPWS check value is 514.127082 assumed to be a calculation error, to 15 sif figures that calculated value is 514.127081500116
+					expect(+result.t.toFixed(6)).toEqual(514.127082);	// IAPWS check value is 514.127082 assumed to be a calculation error, to 15 sif figures that calculated value is 514.127081500116
 				});
 			});
 
@@ -74,7 +75,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(5)).toEqual(1039.84917);
+					expect(+result.t.toFixed(5)).toEqual(1039.84917);
 				});
 			});
 		});
@@ -89,7 +90,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(5)).toEqual(600.48404);
+					expect(+result.t.toFixed(5)).toEqual(600.48404);
 				});
 			});
 
@@ -101,7 +102,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(5)).toEqual(1064.95556);
+					expect(+result.t.toFixed(5)).toEqual(1064.95556);
 				});
 			});
 
@@ -113,7 +114,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(5)).toEqual(1038.01126);
+					expect(+result.t.toFixed(5)).toEqual(1038.01126);
 				});
 			});
 		});
@@ -128,7 +129,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(6)).toEqual(697.992849);
+					expect(+result.t.toFixed(6)).toEqual(697.992849);
 				});
 			});
 
@@ -140,7 +141,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(6)).toEqual(854.011484);
+					expect(+result.t.toFixed(6)).toEqual(854.011484);
 				});
 			});
 
@@ -152,7 +153,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(6)).toEqual(949.017998);
+					expect(+result.t.toFixed(6)).toEqual(949.017998);
 				});
 			});
 		});
@@ -170,7 +171,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(7)).toEqual(628.2959869);
+					expect(+result.t.toFixed(7)).toEqual(628.2959869);
 				});
 
 				it('Specific gravity (v) is correct', function() {
@@ -187,7 +188,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(7)).toEqual(629.7158726);	// IAPWS check value is 514.127082 assumed to be a calculation error, to 15 sif figures that calculated value is 514.127081500116
+					expect(+result.t.toFixed(7)).toEqual(629.7158726);	// IAPWS check value is 514.127082 assumed to be a calculation error, to 15 sif figures that calculated value is 514.127081500116
 				});
 
 				it('Specific gravity (v) is correct', function() {
@@ -204,7 +205,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(7)).toEqual(705.6880237);
+					expect(+result.t.toFixed(7)).toEqual(705.6880237);
 				});
 
 				it('Specific gravity (v) is correct', function() {
@@ -223,7 +224,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(7)).toEqual(640.1176443);
+					expect(+result.t.toFixed(7)).toEqual(640.1176443);
 				});
 
 				it('Specific gravity (v) is correct', function() {
@@ -240,7 +241,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(7)).toEqual(716.3687517);
+					expect(+result.t.toFixed(7)).toEqual(716.3687517);
 				});
 
 				it('Specific gravity (v) is correct', function() {
@@ -257,7 +258,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				});
 
 				it('Temperature (T) is correct', function() {
-					expect(+result.T.toFixed(7)).toEqual(847.4332825);
+					expect(+result.t.toFixed(7)).toEqual(847.4332825);
 				});
 
 				it('Specific gravity (v) is correct', function() {
