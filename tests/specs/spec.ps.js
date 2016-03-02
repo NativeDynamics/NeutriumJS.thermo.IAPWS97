@@ -7,7 +7,6 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 
 			beforeAll(function() {
 				result = NeutriumJS.Steam.PS.solve(3, 0.5);
-				console.log(result);
 			});
 
 			it('Temperature (T) is correct', function() {

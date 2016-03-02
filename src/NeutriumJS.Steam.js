@@ -419,6 +419,6 @@
 	function Exception(message)
 	{
 		this.name = 'NeutriumJS.steam Exception';
-		this.message = message;
+		this.message = message || "Values out of range";
 	}
 }));

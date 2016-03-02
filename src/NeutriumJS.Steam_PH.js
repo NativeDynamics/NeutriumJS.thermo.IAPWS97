@@ -62,7 +62,7 @@
 			case 1  : result = r1_PH(P,h); break;
 			case 2  : result = r2_PH(P,h); break;
 			case 3  : result = r3_PH(P,h); break;
-			case -1 : break;
+			default : throw new NS.Exception();
 		}
 
 		return result;

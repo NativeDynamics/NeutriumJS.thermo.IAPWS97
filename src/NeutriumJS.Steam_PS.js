@@ -56,6 +56,7 @@
 			case 2  : result = r2_PS(P, s); break;
 			case 3  : result = r3_PS(P, s); break;
 			//case 4  : result = R4_PS(P, s); break;
+			default : throw new NS.Exception();
 		}
 
 		return result;

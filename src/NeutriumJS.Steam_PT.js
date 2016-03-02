@@ -79,6 +79,7 @@
 			case 2  : result = r2_PT(P, T); break;
 			case 3  : result = r3_PT(P, T, v); break;
 			case 5  : result = r5_PT(P, T); break;
+			default : throw new NS.Exception();
 		}
 
 		return result;

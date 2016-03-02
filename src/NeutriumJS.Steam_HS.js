@@ -62,6 +62,7 @@
 			case 2	: result = r2_HS(h, s); break;
 			case 3	: result = r3_HS(h, s); break;
 			case 4	: result = r4_HS(h, s); break;
+			default : throw new NS.Exception();
 		}
 
 		return result;
