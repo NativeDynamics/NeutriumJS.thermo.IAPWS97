@@ -135,6 +135,8 @@ NeutriumJS is free software, but you can support the developers by [donating her
 | 1.0.5   | Add UMD definition |
 | 1.1.0   | Optional NeutriumJS.convert support |
 | 1.1.1	  | Change P and T keys to lower case |
+| 1.1.2   | Added exception throwing for out of range case |
+| 1.1.3   | Bug fixes for exception throwing logic |
 
 ## License 
 

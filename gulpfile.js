@@ -4,7 +4,7 @@ var concat = require('gulp-concat');
 var jshint = require('gulp-jshint');
 var karma = require('karma').server;
 
-gulp.task('default', ['lint', 'test', 'all', 'pt', 'ps', 'ph', 'hs']);
+gulp.task('default', ['lint', 'all', 'pt', 'ps', 'ph', 'hs', 'test']);
 
 gulp.task('test', function(done) {
    karma.start({

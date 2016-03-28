@@ -419,6 +419,6 @@
 	function Exception(message)
 	{
 		this.name = 'NeutriumJS.steam Exception';
-		this.message = message || "Values out of range";
+		this.message = message || 'The current input values are out of range for the IAWPS correlations';
 	}
 }));

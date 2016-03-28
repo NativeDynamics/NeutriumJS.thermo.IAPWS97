@@ -275,7 +275,14 @@
 		var P = r1_HS_P(h,s),
 			T = PH.r1_PH_T(P,h);
 
-		return PT.r1(P,T);
+		if(P >= NS.CONST('MIN_P') && P <= NS.CONST('MAX_P'))
+		{
+			return PT.r1(P,T);
+		}
+		else
+		{
+			throw new NS.Exception();
+		}
 	}
 
 	function r1_HS_P(h, s)
@@ -307,7 +314,14 @@
 	{
 		var P = r2_HS_P(h,s);
 
-		return PH.r2(P,h);
+		if(P >= NS.CONST('MIN_P') && P <= NS.CONST('MAX_P'))
+		{
+			return PH.r2(P,h);
+		}
+		else
+		{
+			throw new NS.Exception();
+		}
 	}
 
 	function r2_HS_P(h, s)
@@ -403,7 +417,14 @@
 	{
 		var P = r3_HS_P(h, s);
 
-		return PH.r2(P, h);
+		if(P >= NS.CONST('MIN_P') && P <= NS.CONST('MAX_P'))
+		{
+			return PH.r2(P, h);
+		}
+		else
+		{
+			throw new NS.Exception();
+		}
 	}
 
 	function r3_HS_P(h, s)
