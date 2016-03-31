@@ -1,6 +1,6 @@
 {
 	"name": "NeutriumJS.thermo.IAPWS97",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"homepage": "https://github.com/NativeDynamics/NeutriumJS.thermo.IAPWS97",
 	"authors": [
 		"Trevor Walker <@cubicleWar>"

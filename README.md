@@ -30,7 +30,7 @@ You can install NeutriumJS Steam using bower.
 
 You can add NeutriumJS.thermo.IAPWS97 to your project using npm by:
 
-	npm install neutriumjs.thermo.IAPWS97 --save
+	npm install neutriumjs.thermo.iapws97 --save
 
 ### Standalone
 
