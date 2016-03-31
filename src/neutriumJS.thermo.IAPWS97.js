@@ -15,20 +15,21 @@
 	if(typeof define === "function" && define.amd)
 	{
 		require(['NeutriumJS/Qty'], function(Qty) {
-			define('NeutriumJS/Steam', ['NeutriumJS/Qty'], factory);
+			define('NeutriumJS/thermo/IAWPS97', ['NeutriumJS/Qty'], factory);
 		},
 		function(err) {
-			define('NeutriumJS/Steam', [], factory);
+			define('NeutriumJS/thermo/IAWPS97', [], factory);
 		});
 	}
 	else if (typeof exports === "object" && module.exports)
 	{
-		module.exports = factory(require('NeutriumJS/Qty'));
+		module.exports = factory(require('NeutriumJS.Qty'));
 	}
 	else
 	{
 		root.NeutriumJS = root.NeutriumJS || {};
-		root.NeutriumJS.Steam = factory(root.NeutriumJS.Qty);
+		root.NeutriumJS.thermo = root.NeutriumJS.thermo || {};
+		root.NeutriumJS.thermo.IAWPS97 = factory(root.NeutriumJS.Qty);
 	}
 }(this, function(Qty) {
 	"use strict";
@@ -418,7 +419,7 @@
 
 	function Exception(message)
 	{
-		this.name = 'NeutriumJS.steam Exception';
+		this.name = 'NeutriumJS.thermo.IAWPS Exception';
 		this.message = message || 'The current input values are out of range for the IAWPS correlations';
 	}
 }));

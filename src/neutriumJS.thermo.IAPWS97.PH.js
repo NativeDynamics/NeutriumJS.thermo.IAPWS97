@@ -14,17 +14,18 @@
 
 	if(typeof define === "function" && define.amd)
 	{
-		define('NeutriumJS/Steam/PH', ['NeutriumJS/Steam', 'NeutriumJS/Steam/PT'], factory);
+		define('NeutriumJS/thermo/IAWPS97/PH', ['NeutriumJS/thermo/IAWPS97', 'NeutriumJS/thermo/IAWPS97/PT'], factory);
 	}
 	else if (typeof exports === "object" && module.exports)
 	{
-		module.exports = factory(require('NeutriumJS.Steam'), require('NeutriumJS.Steam.PT'));
+		module.exports = factory(require('NeutriumJS.thermo.IAWPS97'), require('NeutriumJS.thermo.IAWPS97.PT'));
 	}
 	else
 	{
 		root.NeutriumJS = root.NeutriumJS || {};
-		root.NeutriumJS.Steam = root.NeutriumJS.Steam || {};
-		root.NeutriumJS.Steam.PH = factory(root.NeutriumJS.Steam, root.NeutriumJS.Steam.PT);
+		root.NeutriumJS.thermo = root.NeutriumJS.thermo || {};
+		root.NeutriumJS.thermo.IAWPS97 = root.NeutriumJS.thermo.IAWPS97 || {};
+		root.NeutriumJS.thermo.IAWPS97.PH = factory(root.NeutriumJS.thermo.IAWPS97, root.NeutriumJS.thermo.IAWPS97.PT);
 	}
 }(this, function (NS, PT) {
 	"use strict";

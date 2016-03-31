@@ -1,11 +1,11 @@
-describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
+describe("NeutriumJS.thermo.IAWPS97 Pressure-Enthalpy equations", function() {
 	describe("PH Region 1", function() {
 
 		describe("correct results for P = 3 MPa, h = 500 kJ/kg", function() {
 			var result;
 
 			beforeAll(function() {
-				result = NeutriumJS.Steam.PH.solve(3, 500);
+				result = NeutriumJS.thermo.IAWPS97.PH.solve(3, 500);
 			});
 
 			it('Temperature (T) is correct', function() {
@@ -17,7 +17,7 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 			var result;
 
 			beforeAll(function() {
-				result = NeutriumJS.Steam.PH.solve(80, 500);
+				result = NeutriumJS.thermo.IAWPS97.PH.solve(80, 500);
 			});
 
 			it('Temperature (T) is correct', function() {
@@ -29,7 +29,7 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 			var result;
 
 			beforeAll(function() {
-				result = NeutriumJS.Steam.PH.solve(80, 1500);
+				result = NeutriumJS.thermo.IAWPS97.PH.solve(80, 1500);
 			});
 
 			it('Temperature (T) is correct', function() {
@@ -42,11 +42,11 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 
 		describe("PH Region 2 boundary equations", function() {
 			it('Boundary 2bc equation h = 3516.004323 kJ/kg', function() {
-				expect(+NeutriumJS.Steam.PH.b2bc_H_P(3516.004323).toFixed(6)).toEqual(100);
+				expect(+NeutriumJS.thermo.IAWPS97.PH.b2bc_H_P(3516.004323).toFixed(6)).toEqual(100);
 			});
 
 			it('Boundary 2bc equation P = 100 MPa', function() {
-				expect(+NeutriumJS.Steam.PH.b2bc_P_H(100).toFixed(6)).toEqual(3516.004323);
+				expect(+NeutriumJS.thermo.IAWPS97.PH.b2bc_P_H(100).toFixed(6)).toEqual(3516.004323);
 			});
 		});
 
@@ -56,7 +56,7 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(0.001, 3000);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(0.001, 3000);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -68,7 +68,7 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(3, 3000);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(3, 3000);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -80,7 +80,7 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(3, 4000);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(3, 4000);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -95,7 +95,7 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(5, 3500);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(5, 3500);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -107,7 +107,7 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(5, 4000);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(5, 4000);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -119,7 +119,7 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(25, 3500);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(25, 3500);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -134,7 +134,7 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(40, 2700);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(40, 2700);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -146,7 +146,7 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(60, 2700);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(60, 2700);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -158,7 +158,7 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(60, 3200);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(60, 3200);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -168,11 +168,11 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 		});
 	});
 
-	describe("NeutriumJS.Steam PH Region 3", function() {
+	describe("NeutriumJS.thermo.IAWPS97 PH Region 3", function() {
 
 		describe("PH Region 3 boundary equations", function() {
 			it('Boundary 3ab equation P = 25 MPa', function() {
-				expect(+NeutriumJS.Steam.PH.b3ab_P_H(25).toFixed(6)).toEqual(2095.936454);
+				expect(+NeutriumJS.thermo.IAWPS97.PH.b3ab_P_H(25).toFixed(6)).toEqual(2095.936454);
 			});
 		});
 
@@ -182,8 +182,8 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result, v;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(20, 1700);
-					v = NeutriumJS.Steam.PH.r3A_PH_V(20, 1700);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(20, 1700);
+					v = NeutriumJS.thermo.IAWPS97.PH.r3A_PH_V(20, 1700);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -199,8 +199,8 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result, v;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(50, 2000);
-					v = NeutriumJS.Steam.PH.r3A_PH_V(50, 2000);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(50, 2000);
+					v = NeutriumJS.thermo.IAWPS97.PH.r3A_PH_V(50, 2000);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -216,8 +216,8 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result, v;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(100, 2100);
-					v = NeutriumJS.Steam.PH.r3A_PH_V(100, 2100);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(100, 2100);
+					v = NeutriumJS.thermo.IAWPS97.PH.r3A_PH_V(100, 2100);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -236,8 +236,8 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result, v;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(20, 2500);
-					v = NeutriumJS.Steam.PH.r3B_PH_V(20, 2500);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(20, 2500);
+					v = NeutriumJS.thermo.IAWPS97.PH.r3B_PH_V(20, 2500);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -253,8 +253,8 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result, v;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(50, 2400);
-					v = NeutriumJS.Steam.PH.r3B_PH_V(50, 2400);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(50, 2400);
+					v = NeutriumJS.thermo.IAWPS97.PH.r3B_PH_V(50, 2400);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -270,8 +270,8 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PH.solve(100, 2700);
-					v = NeutriumJS.Steam.PH.r3B_PH_V(100, 2700);
+					result = NeutriumJS.thermo.IAWPS97.PH.solve(100, 2700);
+					v = NeutriumJS.thermo.IAWPS97.PH.r3B_PH_V(100, 2700);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -291,15 +291,15 @@ describe("NeutriumJS.Steam Pressure-Enthalpy equations", function() {
 		describe("P_3sat(h) ", function() {
 
 			it('h = 1700 kJ/kg is correct', function() {
-				expect(+NeutriumJS.Steam.PH.r4_H_Psat(1700).toFixed(8)).toEqual(17.24175718);
+				expect(+NeutriumJS.thermo.IAWPS97.PH.r4_H_Psat(1700).toFixed(8)).toEqual(17.24175718);
 			});
 
 			it('h = 2000 kJ/kg is correct', function() {
-				expect(+NeutriumJS.Steam.PH.r4_H_Psat(2000).toFixed(8)).toEqual(21.93442957);
+				expect(+NeutriumJS.thermo.IAWPS97.PH.r4_H_Psat(2000).toFixed(8)).toEqual(21.93442957);
 			});
 
 			it('h = 2400 kJ/kg is correct', function() {
-				expect(+NeutriumJS.Steam.PH.r4_H_Psat(2400).toFixed(8)).toEqual(20.18090839);
+				expect(+NeutriumJS.thermo.IAWPS97.PH.r4_H_Psat(2400).toFixed(8)).toEqual(20.18090839);
 			});
 		});
 

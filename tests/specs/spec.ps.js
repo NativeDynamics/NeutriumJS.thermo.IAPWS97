@@ -1,4 +1,4 @@
-describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
+describe("NeutriumJS.thermo.IAWPS97 Pressure-Entropy equations", function() {
 
 	describe("PS Region 1", function() {
 
@@ -6,7 +6,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 			var result;
 
 			beforeAll(function() {
-				result = NeutriumJS.Steam.PS.solve(3, 0.5);
+				result = NeutriumJS.thermo.IAWPS97.PS.solve(3, 0.5);
 			});
 
 			it('Temperature (T) is correct', function() {
@@ -18,7 +18,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 			var result;
 
 			beforeAll(function() {
-				result = NeutriumJS.Steam.PS.solve(80, 0.5);
+				result = NeutriumJS.thermo.IAWPS97.PS.solve(80, 0.5);
 			});
 
 			it('Temperature (T) is correct', function() {
@@ -30,7 +30,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 			var result;
 
 			beforeAll(function() {
-				result = NeutriumJS.Steam.PS.solve(80, 3);
+				result = NeutriumJS.thermo.IAWPS97.PS.solve(80, 3);
 			});
 
 			it('Temperature (T) is correct', function() {
@@ -39,14 +39,14 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 		});
 	});
 
-	describe("NeutriumJS.Steam PS Region 2", function() {
+	describe("NeutriumJS.thermo.IAWPS97 PS Region 2", function() {
 		describe("PS Region 2a", function() {
 
 			describe("correct results for P = 0.1 MPa, s = 7.5 kJ/kg.K", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(0.1, 7.5);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(0.1, 7.5);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -58,7 +58,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(0.1, 8);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(0.1, 8);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -70,7 +70,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(2.5, 8);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(2.5, 8);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -85,7 +85,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(8, 6);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(8, 6);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -97,7 +97,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(8, 7.5);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(8, 7.5);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -109,7 +109,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(90, 6);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(90, 6);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -124,7 +124,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(20, 5.75);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(20, 5.75);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -136,7 +136,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(80, 5.25);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(80, 5.25);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -148,7 +148,7 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(80, 5.75);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(80, 5.75);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -158,15 +158,15 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 		});
 	});
 
-	describe("NeutriumJS.Steam PS Region 3", function() {
+	describe("NeutriumJS.thermo.IAWPS97 PS Region 3", function() {
 		describe("PS Region 3a", function() {
 
 			describe("correct results for P = 20 MPa, s = 3.8 kJ/kg.K", function() {
 				var result, T;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(20, 3.8);
-					T = NeutriumJS.Steam.PS.r3A_PS_V(20, 3.8);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(20, 3.8);
+					T = NeutriumJS.thermo.IAWPS97.PS.r3A_PS_V(20, 3.8);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -182,8 +182,8 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result, T;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(50, 3.6);
-					T = NeutriumJS.Steam.PS.r3A_PS_V(50, 3.6);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(50, 3.6);
+					T = NeutriumJS.thermo.IAWPS97.PS.r3A_PS_V(50, 3.6);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -199,8 +199,8 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result, T;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(100, 4);
-					T = NeutriumJS.Steam.PS.r3A_PS_V(100, 4);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(100, 4);
+					T = NeutriumJS.thermo.IAWPS97.PS.r3A_PS_V(100, 4);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -218,8 +218,8 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result, T;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(20, 5);
-					T = NeutriumJS.Steam.PS.r3B_PS_V(20, 5);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(20, 5);
+					T = NeutriumJS.thermo.IAWPS97.PS.r3B_PS_V(20, 5);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -235,8 +235,8 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result, T;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(50, 4.5);
-					T = NeutriumJS.Steam.PS.r3B_PS_V(50, 4.5);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(50, 4.5);
+					T = NeutriumJS.thermo.IAWPS97.PS.r3B_PS_V(50, 4.5);
 				});
 
 				it('Temperature (T) is correct', function() {
@@ -252,8 +252,8 @@ describe("NeutriumJS.Steam Pressure-Entropy equations", function() {
 				var result, T;
 
 				beforeAll(function() {
-					result = NeutriumJS.Steam.PS.solve(100, 5);
-					T = NeutriumJS.Steam.PS.r3B_PS_V(100, 5);
+					result = NeutriumJS.thermo.IAWPS97.PS.solve(100, 5);
+					T = NeutriumJS.thermo.IAWPS97.PS.r3B_PS_V(100, 5);
 				});
 
 				it('Temperature (T) is correct', function() {

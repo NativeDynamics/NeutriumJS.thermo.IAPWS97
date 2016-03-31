@@ -15,7 +15,7 @@ module.exports = function(config) {
 
 		// list of files / patterns to load in the browser
 		files: [
-			'dist/neutriumJS.steam.min.js',
+			'dist/neutriumJS.thermo.IAPWS97.min.js',
 			'tests/specs/**/spec.*.js'
 		],
 

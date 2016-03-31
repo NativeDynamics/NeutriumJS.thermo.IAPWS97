@@ -1,15 +1,15 @@
-var gulp = require('gulp');
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
-var jshint = require('gulp-jshint');
-var karma = require('karma').server;
+var gulp = require('gulp'),
+	uglify = require('gulp-uglify'),
+	concat = require('gulp-concat'),
+	jshint = require('gulp-jshint'),
+	KarmaServer = require('karma').Server;
 
 gulp.task('default', ['lint', 'all', 'pt', 'ps', 'ph', 'hs', 'test']);
 
-gulp.task('test', function(done) {
-   karma.start({
+gulp.task('test', ['all'], function(done) {
+   new KarmaServer({
 	   configFile: __dirname + '/tests/karma.conf.js'
-   }, done);
+   }, done).start();
 });
 
 gulp.task('lint', function() {
@@ -19,58 +19,58 @@ gulp.task('lint', function() {
 });
 
 gulp.task('all', function() {
-  gulp.src([
-       './src/NeutriumJS.Steam.js',
-	   './src/NeutriumJS.Steam_PT.js',
-	   './src/NeutriumJS.Steam_PS.js',
-	   './src/NeutriumJS.Steam_PH.js',
-	   './src/NeutriumJS.Steam_HS.js'
+  return gulp.src([
+       './src/neutriumJS.thermo.IAPWS97.js',
+	   './src/neutriumJS.thermo.IAPWS97.PT.js',
+	   './src/neutriumJS.thermo.IAPWS97.PS.js',
+	   './src/neutriumJS.thermo.IAPWS97.PH.js',
+	   './src/neutriumJS.thermo.IAPWS97.HS.js'
     ])
-  	.pipe(concat('neutriumJS.steam.min.js'))
+  	.pipe(concat('neutriumJS.thermo.IAPWS97.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('pt', function() {
-  gulp.src([
-       './src/NeutriumJS.Steam.js',
-	   './src/NeutriumJS.Steam_PT.js',
+  return gulp.src([
+       './src/neutriumJS.thermo.IAPWS97.js',
+	   './src/neutriumJS.thermo.IAPWS97.PT.js',
     ])
-  	.pipe(concat('neutriumJS.steam.pt.min.js'))
+  	.pipe(concat('neutriumJS.thermo.IAPWS97.pt.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('ps', function() {
-  gulp.src([
-       './src/NeutriumJS.Steam.js',
-	   './src/NeutriumJS.Steam_PT.js',
-	   './src/NeutriumJS.Steam_PS.js'
+  return gulp.src([
+       './src/neutriumJS.thermo.IAPWS97.js',
+	   './src/neutriumJS.thermo.IAPWS97.PT.js',
+	   './src/neutriumJS.thermo.IAPWS97.PS.js'
     ])
-  	.pipe(concat('neutriumJS.steam.pt-ps.min.js'))
+  	.pipe(concat('neutriumJS.thermo.IAPWS97.pt-ps.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('ph', function() {
-  gulp.src([
-       './src/NeutriumJS.Steam.js',
-	   './src/NeutriumJS.Steam_PT.js',
-	   './src/NeutriumJS.Steam_PH.js',
+  return gulp.src([
+       './src/neutriumJS.thermo.IAPWS97..js',
+	   './src/neutriumJS.thermo.IAPWS97.PT.js',
+	   './src/neutriumJS.thermo.IAPWS97.PH.js',
     ])
-  	.pipe(concat('neutriumJS.steam.pt-ph.min.js'))
+  	.pipe(concat('neutriumJS.thermo.IAPWS97.pt-ph.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('hs', function() {
-  gulp.src([
-       './src/NeutriumJS.Steam.js',
-	   './src/NeutriumJS.Steam_PT.js',
-	   './src/NeutriumJS.Steam_PH.js',
-	   './src/NeutriumJS.Steam_HS.js',
+  return gulp.src([
+       './src/neutriumJS.thermo.IAPWS97..js',
+	   './src/neutriumJS.thermo.IAPWS97.PT.js',
+	   './src/neutriumJS.thermo.IAPWS97.PH.js',
+	   './src/neutriumJS.thermo.IAPWS97.HS.js',
     ])
-  	.pipe(concat('neutriumJS.steam.pt-ph-hs.min.js'))
+  	.pipe(concat('neutriumJS.thermo.IAPWS97.pt-ph-hs.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('./dist'));
 });

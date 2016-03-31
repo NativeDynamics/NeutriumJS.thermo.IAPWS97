@@ -1,8 +1,8 @@
-# NeutriumJS.Steam
+# NeutriumJS.thermo.IAPWS97
 
 ## Introduction
 
-NeutriumJS Steam is a stand alone javascript implementation of the [IAPWS](http://www.iapws.org/) formulations of the thermodynamic properties of water and steam. The IAPWS papers implemented in NeutriumJS.Steam are as follows:
+NeutriumJS.thermo.IAPWS97 is a stand alone javascript implementation of the [IAPWS](http://www.iapws.org/) formulations of the thermodynamic properties of water and steam. The IAPWS papers implemented in NeutriumJS.thermo.IAPWS97 are as follows:
 
 - [Revised Release on the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam 2007](http://www.iapws.org/relguide/IF97-Rev.html)
 - [Revised Supplementary Release on Backward Equations for Pressure as a Function of Enthalpy and Entropy p(h,s) for Regions 1 and 2 of the IAPWS Industrial Formulation 1997 for the Thermodynamic Properties of Water and Steam](http://www.iapws.org/relguide/Supp-PHS12-2014.pdf)
@@ -18,53 +18,53 @@ For specific details on range of applicability for the IAPWS please refer to the
 
 ## Getting Started
 
-### Adding NeutriumJS.Steam
+### Adding NeutriumJS.thermo.IAPWS97
 
 #### Bower.io
 
 You can install NeutriumJS Steam using bower.
 
-	bower install neutriumjs-steam
+	bower install neutriumjs.thermo.IAPWS97
 
 #### npm
 
-You can add NeutriumJS.Steam to your project using npm by:
+You can add NeutriumJS.thermo.IAPWS97 to your project using npm by:
 
-	npm install neutriumjs.steam --save
+	npm install neutriumjs.thermo.IAPWS97 --save
 
 ### Standalone
 
 If your project is not using bower you can use the compiled and minified source which is found at:
 
-	dist/neutriumJS.steam.min.js
+	dist/neutriumJS.thermo.IAPWS97.min.js
 
 ## Including the library
 
-The NeutriumJS.Steam library should be included into your page using  the following:
+The NeutriumJS.thermo.IAPWS97 library should be included into your page using  the following:
 
-	<script charset="utf-8" src="path-to-lib/neutriumJS.steam.min.js"></script>
+	<script charset="utf-8" src="path-to-lib/neutriumJS.thermo.IAPWS97.min.js"></script>
 
 Note the use of charset="utf-8" is important, particularly if using un-minified code as the codebase makes use of unicode character variable names. 
 
 ### Limiting Library Weight
 
-NeutriumJS.Steam is divided into base, pressure-temperature (PT), pressure-entropy (PS), pressure-enthalpy (PH) and enthalpy-entropy (HS) modules. If you only require a subset of this functionality you can exclude modules to reduce the weight of the library. There are a number of builds in the ./dist folder that provide selected subsets of the functionality, however you can also create your own subset as follows:
+NeutriumJS.thermo.IAPWS97 is divided into base, pressure-temperature (PT), pressure-entropy (PS), pressure-enthalpy (PH) and enthalpy-entropy (HS) modules. If you only require a subset of this functionality you can exclude modules to reduce the weight of the library. There are a number of builds in the ./dist folder that provide selected subsets of the functionality, however you can also create your own subset as follows:
 
 
 At a bare minimum you must include the following files which will provide the functionality to calculate steam properties using pressure and temperature (these are the dependencies of all sub modules):
 
-	src/NeutriumJS.Steam.js
-	src/NeutriumJS.Steam_PT.js
+	src/neutriumJS.thermo.IAPWS97.js
+	src/neutriumJS.thermo.IAPWS97.PT.js
 	
 To enable calculation of steam properties using pressure-entropy or pressure-enthalpy in addition to the base requirements above you need to include either/both of the following files as appropriate:
 
-	src/NeutriumJS.Steam_PS.js
-	src/NeutriumJS.Steam_PH.js
+	src/neutriumJS.thermo.IAPWS97.PS.js
+	src/neutriumJS.thermo.IAPWS97.PH.js
 	
 Lastly if you wanted to enable calculations based on enthalpy-entropy (HS) you need to include the following files in addition to the base requirements (note the dependency on the PH module):
  	
- 	src/NeutriumJS.Steam_PH.js
-	src/NeutriumJS.Steam_HS.js
+ 	src/neutriumJS.thermo.IAPWS97.PH.js
+	src/neutriumJS.thermo.IAPWS97.HS.js
 
 If you need further clarification of module dependencies just refer to the UMD definition at the start of each source file.
 
@@ -72,10 +72,10 @@ If you need further clarification of module dependencies just refer to the UMD d
 
 IAPWS provides four methods to calculate the properties of steam and water using combinations of pressure (in MPa), temperature (K), enthalpy (kJ/kg.K) and entropy (kJ/K.kg). In NeutriumJS Steam these four functions  are listed as follows:
 
-	NeutriumJS.Steam.PT.solve(P, T);	// Calculate properties from pressure and temperature
-	NeutriumJS.Steam.PH.solve(P, H);	// Calculate properties from pressure and enthalpy
-	NeutriumJS.Steam.PS.solve(P, S);	// Calculate properties from pressure and entropy
-	NeutriumJS.Steam.HS.solve(H, S);	// Calculate properties from enthalpy and entropy
+	NeutriumJS.thermo.IAPWS97.PT.solve(p, t);	// Calculate properties from pressure and temperature
+	NeutriumJS.thermo.IAPWS97.PH.solve(p, h);	// Calculate properties from pressure and enthalpy
+	NeutriumJS.thermo.IAPWS97.PS.solve(p, s);	// Calculate properties from pressure and entropy
+	NeutriumJS.thermo.IAPWS97.HS.solve(h, s);	// Calculate properties from enthalpy and entropy
 
 
 ### Return Values
@@ -100,18 +100,18 @@ If your specified values lie within the applicable range for the IAWPS formulati
 		ic		// Ionisation constant
 	}
 
-If you try and calculate the properties outside the range of applicability as specified by IAWPS NeutriumJS Steam will return null.
+If you try and calculate the properties outside the range of applicability as specified by IAWPS an exception will be thrown.
 
 ## Optional Neutrium Convert Support
 
 NeutriumJS.steam has optional support for the [NeutriumJS.convert](https://github.com/NativeDynamics/NeutriumJS.convert) module. Just include it before the steam modules:
 
 	<script charset="utf-8" src="path-to-lib/neutriumJS.convert.min.js"></script> 
-	<script charset="utf-8" src="path-to-lib/neutriumJS.steam.min.js"></script>
+	<script charset="utf-8" src="path-to-lib/neutriumJS.thermo.IAPWS97.min.js"></script>
 
-Then you can get NeutriumJS.steam to return results as Qty objects:
+Then you can get NeutriumJS.thermo.IAPWS97 to return results as Qty objects:
 
-	var result = NeutriumJS.steam.PT.solve(3, 300).asQty();
+	var result = NeutriumJS.thermo.IAPWS97.PT.solve(3, 300).asQty();
 	
 This will allow you to easily convert each property as required:
 
@@ -137,6 +137,7 @@ NeutriumJS is free software, but you can support the developers by [donating her
 | 1.1.1	  | Change P and T keys to lower case |
 | 1.1.2   | Added exception throwing for out of range case |
 | 1.1.3   | Bug fixes for exception throwing logic |
+| 1.2.0	  | Renamed package to NeutriumJS.thermo.IAPWS97 |
 
 ## License 
 
