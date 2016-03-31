@@ -15,10 +15,10 @@
 	if(typeof define === "function" && define.amd)
 	{
 		require(['NeutriumJS/Qty'], function(Qty) {
-			define('NeutriumJS/thermo/IAWPS97', ['NeutriumJS/Qty'], factory);
+			define('NeutriumJS/thermo/IAPWS97', ['NeutriumJS/Qty'], factory);
 		},
 		function(err) {
-			define('NeutriumJS/thermo/IAWPS97', [], factory);
+			define('NeutriumJS/thermo/IAPWS97', [], factory);
 		});
 	}
 	else if (typeof exports === "object" && module.exports)
@@ -29,7 +29,7 @@
 	{
 		root.NeutriumJS = root.NeutriumJS || {};
 		root.NeutriumJS.thermo = root.NeutriumJS.thermo || {};
-		root.NeutriumJS.thermo.IAWPS97 = factory(root.NeutriumJS.Qty);
+		root.NeutriumJS.thermo.IAPWS97 = factory(root.NeutriumJS.Qty);
 	}
 }(this, function(Qty) {
 	"use strict";
