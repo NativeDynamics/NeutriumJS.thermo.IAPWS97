@@ -1,5 +1,13 @@
 # NeutriumJS.thermo.IAPWS97
 
+🔴 Deprecated
+
+⚠️ This package is deprecated and no longer maintained.
+
+This package has been superseded by [@neutrium/thermo.eos.iapws97](https://github.com/neutrium/thermo.eos.iapws97), which contains ongoing updates, improvements, and support.
+
+Existing versions remain available for historical use only.
+
 ## Introduction
 
 NeutriumJS.thermo.IAPWS97 is a stand alone javascript implementation of the [IAPWS](http://www.iapws.org/) formulations of the thermodynamic properties of water and steam. The IAPWS papers implemented in NeutriumJS.thermo.IAPWS97 are as follows:
